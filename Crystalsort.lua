@@ -333,10 +333,8 @@ end
 local relations = torch.norm(diffs_matrix, 2, 3):squeeze()
 
 -- Then to finish the whole thing up, invert the signs so that more-different
--- pixels have lower scores, and add 2 to ensure everything's above 0, thereby
--- preventing any 
+-- pixels have lower scores.
 relations:mul(-1)
---relations:add(2)
 
 local randcryst = Crystal.new(rectlen, rectwid, randsquare, relations)
 randcryst:build()
